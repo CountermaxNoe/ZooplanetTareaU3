@@ -1,0 +1,56 @@
+﻿@model ZooplanetTareaU3.Areas.Admin.Models.AgregarAdminEspecieViewModel
+
+@{
+    Layout = "LayoutAdmin";
+}
+
+<article class="admin-card">
+    <h2 class="admin-title">Agregar Nueva Especie</h2>
+
+    <form class="admin-form" method="post" enctype="multipart/form-data">
+        <section class="form-group">
+            <label for="especie" class="form-label">Nombre de la Especie</label>
+            <input name="Nombre" value="@(Model?.Nombre??"")" type="text" id="especie" class="form-input" placeholder="Ej: Águila Real" required>
+        </section>
+
+        <section class="form-group">
+            <label for="clase" class="form-label">Clase</label>
+            <select name="IdClase" id="clase" class="form-select" required>
+                @foreach (var clase in Model.Clases)
+                {
+                    <option value="@clase.Id">@clase.Nombre</option>
+                }
+            </select>
+        </section>
+
+        <section class="form-group">
+            <label for="habitat" class="form-label">Hábitat</label>
+            <input name="Habitat" @(Model?.Habitat??"") type="text" id="habitat" class="form-input" placeholder="Ej: Montañas, Bosques, Lagos..." required>
+        </section>
+
+        <section class="form-group">
+            <label for="peso" class="form-label">Peso (kg)</label>
+            <input name="Peso" @(Model?.Peso ?? 0) type="number" id="peso" class="form-input" step="0.01" placeholder="Ej: 6.50" required>
+        </section>
+
+        <section class="form-group">
+            <label for="tamaño" class="form-label">Tamaño (cm)</label>
+            <input name="Tamaño" @(Model?.Tamaño ?? 0) type="number" id="tamaño" class="form-input" placeholder="Ej: 95" required>
+        </section>
+
+        <section class="form-group">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" name="Imagen" id="imagen" class="form-file" accept="image/jpg">
+        </section>
+
+        <section class="form-group">
+            <label for="observaciones" class="form-label">Observaciones</label>
+            <textarea name="Observaciones" @(Model?.Observaciones ?? "") id="observaciones" class="form-textarea" placeholder="Descripción y características de la especie..." required></textarea>
+        </section>
+
+        <section class="btn-group">
+            <button type="submit" value="Agregar" class="btn btn-success">Guardar Especie</button>
+            <a href="~/Admin/Home/Index" class="btn btn-secondary">Cancelar</a>
+        </section>
+    </form>
+</article>

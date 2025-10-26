@@ -1,0 +1,70 @@
+﻿@model ZooplanetTareaU3.Areas.Admin.Models.EditarAdminEspecieViewModel
+
+@{
+    Layout = "LayoutAdmin";
+}
+
+<article class="admin-card">
+            <h2 class="admin-title">Editar Especie</h2>
+
+            <section class="message message-success">
+                Editando: <strong>@Model.Nombre</strong>
+            </section>
+
+    <form class="admin-form" method="post" enctype="multipart/form-data">
+                <section class="form-group">
+                    <label for="especie" class="form-label">Nombre de la Especie</label>
+                    <input name="Nombre" type="text" id="especie" class="form-input" value="@Model.Nombre" required>
+                </section>
+
+                <section class="form-group">
+                    <label for="clase" class="form-label">Clase</label>
+                    <select name="IdClase" id="clase" class="form-select" required>
+                        @foreach (var clase in Model.Clases)
+                        {
+                            <option value="@clase.Id" selected>@clase.Nombre</option>
+                        }   
+                    </select>
+                </section>
+
+                <section class="form-group">
+                    <label for="habitat" class="form-label">Hábitat</label>
+                    <input name="Habitat" type="text" id="habitat" class="form-input" value="@Model.Habitat" required>
+                </section>
+
+                <section class="form-group">
+                    <label for="peso" class="form-label">Peso (kg)</label>
+                    <input name="Peso" type="number" id="peso" class="form-input" value="@Model.Peso" step="0.01" required>
+                </section>
+
+                <section class="form-group">
+                    <label for="tamaño" class="form-label">Tamaño (cm)</label>
+                    <input name="Tamaño" type="number" id="tamaño" class="form-input" value="@Model.Tamaño" required>
+                </section>
+
+                <section class="form-group">
+                    <label for="imagen" class="form-label">Imagen Actual</label>
+                    <div style="margin-bottom: 0.5rem;">
+                        <img src="~/especies/@(Model.Id).jpg?v=@Guid.NewGuid()"
+                            alt="@Model.Nombre"
+                            style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                    </div>
+
+                    <input name="Imagen" type="file" id="imagen" class="form-file" accept="image/jpg,image/jpeg,image/png">
+                    <small style="color: var(--text-color); font-size: 0.9rem;">
+                        Dejar vacío para mantener la imagen actual
+                    </small>
+                </section>
+
+
+                <section class="form-group">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <textarea name="Observaciones" id="observaciones" class="form-textarea" required>@Model.Observaciones</textarea>
+                </section>
+
+                <section class="btn-group">
+                    <button type="submit" value="Editar" class="btn btn-success">Guardar Cambios</button>
+                    <a href="~/Admin/Home/Index" class="btn btn-secondary">Cancelar</a>
+                </section>
+            </form>
+        </article>
