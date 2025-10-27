@@ -21,7 +21,7 @@
             {
                 <tr>
                     <td>
-                        <img src="~/especies/@(especie.Id).jpg" alt="@especie.Nombre">
+                        <img src="~/especies/@(especie.Id).jpg?v=@Guid.NewGuid()" alt="@especie.Nombre">
                     </td>
                     <td>
                         <strong>@especie.Nombre</strong>

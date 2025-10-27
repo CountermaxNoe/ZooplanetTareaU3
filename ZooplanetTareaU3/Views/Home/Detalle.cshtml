@@ -36,7 +36,7 @@
     </section>
 
     <aside class="species-image-container">
-        <img src="~/especies/@(Model.Id).jpg"
+        <img src="~/especies/@(Model.Id).jpg?v=@Guid.NewGuid()"
              alt="@Model.Nombre"
              class="species-image">
     </aside>
